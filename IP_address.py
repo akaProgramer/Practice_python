@@ -9,3 +9,4 @@ class IP_address:
 
 if __name__ == "__main__":
     IP1=IP_address()
+print("hello")
