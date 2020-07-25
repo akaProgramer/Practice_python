@@ -9,7 +9,7 @@ import socket
 class class_joiner:
     day = datetime.datetime.today().strftime("%A")
 
-    days = {"Monday": {2: ["OS", "3753284740", "12345"], 3: ["Maths", "7888484402", "343927"], 4: ["SE", "859-964-4525", "813135"], 5: ["OT", "9520868049", "754986"]},
+    time_table = {"Monday": {2: ["OS", "3753284740", "12345"], 3: ["Maths", "7888484402", "343927"], 4: ["SE", "859-964-4525", "813135"], 5: ["OT", "9520868049", "754986"]},
             "Tuesday": {1: ["Maths", "7888484402", "343927"], 2: ["SE", "859-964-4525", "813135"], 3: ["OT", "9520868049", "754986"], 5: ["OS", "3753284740", "12345"]},
             "Wednesday": {1: ["SE", "8599644525", "813135"], 2: ["OT", "9520868049", "754986"], 3: ["OS", "3753284740", "12345"], 5: ["Maths", "7888484402", "343927"]},
             "Thursday": {1: ["Maths", "7888484402", "343927"], 2: ["SE", "859-964-4525", "813135"], 3: ["OT", "9520868049", "754986"], 4: ["OS", "3753284740", "12345"]},
@@ -83,8 +83,8 @@ class class_joiner:
             time.sleep(9)
         print("\n.\n.\n.\n.\n.\nNow we'll join into next class")
         pyautogui.hotkey("win", "d")
-        # if len(days[day][lec]) == 1:
-        #     print("Its",days[day][lec][0],"class and you are about to join in")
+        # if len(time_table[day][lec]) == 1:
+        #     print("Its",time_table[day][lec][0],"class and you are about to join in")
         #     website = "https://classroom.google.com/u/1/c/MTY1NzU0ODA1ODFa"
         #     webbrowser.open_new(website)
         #     time.sleep(3)
@@ -102,37 +102,37 @@ class class_joiner:
         #     time.sleep(1)
         #     pyautogui.hotkey("ctrl","w")
         #     run_again()
-        print("Its", self.days[day][lec][0], "class and you are about to join in")
+        print("Its", self.time_table[day][lec][0], "class and you are about to join in")
         subprocess.Popen([r'C:\Users\akash\AppData\Roaming\Zoom\bin\Zoom.exe'])
         time.sleep(4)
         pyautogui.hotkey("shift", "tab")
         pyautogui.typewrite(["tab"])
         pyautogui.typewrite(["enter"])
         time.sleep(6)
-        pyautogui.typewrite(self.days[self.day][lec][1])
+        pyautogui.typewrite(self.time_table[self.day][lec][1])
         pyautogui.typewrite(["enter"])
         time.sleep(6)
-        if len(self.days[self.day][lec]) > 2:
-            pyautogui.typewrite(self.days[self.day][lec][2])
+        if len(self.time_table[self.day][lec]) > 2:
+            pyautogui.typewrite(self.time_table[self.day][lec][2])
             pyautogui.typewrite(["enter"])
         self.run_again()
 
 if __name__ == "__main__":
-    day = datetime.datetime.today().strftime("%A")
     joiner = class_joiner()
-    
+    day= joiner.day()
+
     #checking for interet connection
     while joiner.is_connected() == False:
         print("wating for internet access.....")
         time.sleep(2)
     
-    if day not in joiner.days.keys():
+    if day not in joiner.time_table.keys():
         print("No classes for today")
     elif joiner.lec_no() == "Timming is not correct":
         print(joiner.lec_no())
         input()
         quit()
-    elif joiner.lec_no() in joiner.days[day].keys():
+    elif joiner.lec_no() in joiner.time_table[day].keys():
         joiner.join_in_class()
     else:
         print("Its a CG lecture")
