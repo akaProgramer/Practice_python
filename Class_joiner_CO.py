@@ -72,7 +72,7 @@ class class_joiner:
         print("\n.\n.\nClass joined")
         input()
         quit()
-
+        
     def join_in_class(self):
         lec = self.lec_no()
         print("We are about to join a class so, please stop whatever u were doing and let the script do its work")
