@@ -119,7 +119,7 @@ class class_joiner:
 
 if __name__ == "__main__":
     joiner = class_joiner()
-    day= joiner.day()
+    day= joiner.day
 
     #checking for interet connection
     while joiner.is_connected() == False:
