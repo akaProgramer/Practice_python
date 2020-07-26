@@ -1,8 +1,7 @@
-import time
-
-i=0
-while i<=4:
-    i=input("Enter a number")
-    time.sleep(2)
-    i+=1  
-print("jeelle")
+from threading import Timer
+timeout = 4
+t = Timer(timeout, print, ['Sorry, times up'])
+print(t)
+t.start()
+prompt = input("You have %d seconds to choose the correct answer...\n" % timeout)
+t.cancel()
