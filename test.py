@@ -1,4 +1,5 @@
 import psutil
+import regex
 
 def checkIfProcessRunning(processName):
     '''(
